@@ -17,8 +17,14 @@ namespace WhatsAppIntegration.Controllers
         
         private readonly IWhatsAppService _whatsAppService;
 
+
+        public AuthController(IWhatsAppService whatsAppService,IOptions<WhatsAppSettings> settings)
+        {   
+            _whatsAppService = whatsAppService;
+            _settings = settings.Value;
+        }
         public AuthController(IWhatsAppService whatsAppService)
-        {
+        {   
             _whatsAppService = whatsAppService;
         }
 
@@ -42,6 +48,9 @@ namespace WhatsAppIntegration.Controllers
                 throw new Exception("Something went wrong!");
 
             return Ok("Sent successfully");
+
+            // code from video, ALL BELOW
+            
         }
 
         [HttpPost("send-otp")]
